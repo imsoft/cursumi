@@ -9,6 +9,7 @@ import { ShieldCheck, BookOpen, Download } from "lucide-react"
 import { useCartStore } from "@/store/cart-store"
 import { createClient } from "@supabase/supabase-js"
 import type { Ebook } from "@/interfaces"
+import Image from "next/image"
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -20,7 +21,6 @@ export default function PurchaseConfirmation() {
   const { items, clearCart } = useCartStore()
   const [email, setEmail] = useState("")
   const [cartEbooks, setCartEbooks] = useState<Ebook[]>([])
-  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     // Recuperar el email del localStorage
@@ -32,10 +32,8 @@ export default function PurchaseConfirmation() {
     setEmail(savedEmail)
 
     async function fetchEbooks() {
-      setLoading(true)
       if (items.length === 0) {
         setCartEbooks([])
-        setLoading(false)
         return
       }
       const { data } = await supabase
@@ -43,7 +41,6 @@ export default function PurchaseConfirmation() {
         .select("*")
         .in("id", items)
       setCartEbooks(data || [])
-      setLoading(false)
     }
     fetchEbooks()
 
@@ -77,6 +74,42 @@ export default function PurchaseConfirmation() {
               <p className="text-center">
                 Your purchase has been successfully processed. We have sent an email with the download links for your ebooks. If you do not receive it in the next few minutes, please check your spam folder.
               </p>
+
+              {/* Mostrar la lista de ebooks si hay */}
+              {cartEbooks.length > 0 && (
+                <div className="mt-6">
+                  <h2 className="text-2xl font-bold mb-4">Ebooks</h2>
+                  <div className="flex flex-col gap-4">
+                    {cartEbooks.map((ebook: Ebook) => (
+                      <div key={ebook.id} className="flex items-center justify-between">
+                        <div className="flex items-center">
+                          <div className="h-10 w-10 rounded-full bg-gray-200 dark:bg-gray-800 flex items-center justify-center overflow-hidden">
+                            {ebook.cover_url ? (
+                              <Image src={ebook.cover_url} alt={ebook.title} width={40} height={40} style={{ objectFit: "cover" }} />
+                            ) : (
+                              <BookOpen className="h-6 w-6 text-purple-600 dark:text-purple-400" />
+                            )}
+                          </div>
+                          <div className="ml-4">
+                            <p className="text-sm font-medium leading-none">{ebook.title}</p>
+                            <p className="text-sm text-muted-foreground">{ebook.author}</p>
+                          </div>
+                        </div>
+                        {/* Reemplazar con Link de descarga real cuando esté implementado */}
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="flex-shrink-0 text-purple-600 hover:text-purple-700 hover:bg-purple-50 dark:text-purple-400 dark:hover:bg-purple-900/20"
+                        >
+                          <Download className="h-4 w-4 mr-1" />
+                          Download
+                        </Button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
             </div>
           </CardContent>
           <CardFooter className="flex justify-center gap-4 animate-fade-in-delay-2">

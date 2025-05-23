@@ -232,7 +232,7 @@ export default function AboutPage() {
                 </div>
                 <h3 className="text-xl font-bold">Community</h3>
                 <p className="text-center text-muted-foreground">
-                  We value the connection between readers and authors. We foster an ecosystem where knowledge flows freely and is enriched by everyone's contributions.
+                  We value the connection between readers and authors. We foster an ecosystem where knowledge flows freely and is enriched by everyone&apos;s contributions.
                 </p>
               </div>
             </div>
@@ -245,7 +245,7 @@ export default function AboutPage() {
             <div className="flex flex-col items-center text-center space-y-4">
               <div className="space-y-2">
                 <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">
-                  ¿Quieres formar parte de nuestra historia?
+                  Want to be part of our story?
                 </h2>
                 <p className="max-w-[700px] text-muted-foreground md:text-xl mx-auto">
                   Explora nuestro catálogo de ebooks o contáctanos para conocer más sobre Cursumi.

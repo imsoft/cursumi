@@ -2,6 +2,17 @@ import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { sendPurchaseEmail } from "@/lib/sendPurchaseEmail";
 
+// Puedes definir interfaces más específicas si solo necesitas ciertos campos
+interface PurchaseItem {
+  ebook_id: string;
+}
+
+interface EbookItemForEmail {
+  id: string;
+  title: string;
+  cover_url?: string | null;
+}
+
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
@@ -39,7 +50,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: purchasesError.message }, { status: 500 });
   }
 
-  const ebookIds = purchases.map((p: any) => p.ebook_id);
+  const ebookIds = (purchases as PurchaseItem[]).map((p) => p.ebook_id);
 
   // Obtener los datos de los ebooks
   const { data: ebooks, error: ebooksError } = await supabase
@@ -52,7 +63,7 @@ export async function POST(req: NextRequest) {
   }
 
   // Construir los enlaces de descarga (ajusta la lógica según tu sistema de descargas)
-  const ebooksWithLinks = ebooks.map((ebook: any) => ({
+  const ebooksWithLinks = (ebooks as EbookItemForEmail[]).map((ebook) => ({
     title: ebook.title,
     download_url: `https://cursumi.com/download/${ebook.id}`,
   }));

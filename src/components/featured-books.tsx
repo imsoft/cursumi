@@ -24,7 +24,7 @@ export default function FeaturedBooks() {
         setEbooks(data || [])
         setLoading(false)
       })
-      .catch((err) => {
+      .catch(() => {
         setError("Error loading popular ebooks")
         setLoading(false)
       })

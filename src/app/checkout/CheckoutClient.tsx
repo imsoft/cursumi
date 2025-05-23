@@ -93,7 +93,7 @@ export default function CheckoutClient() {
 
     try {
       // Obtener los ebooks del carrito
-      const cartItems = cartEbooks.filter((item): item is NonNullable<typeof item> => Boolean(item)).map((item) => ({
+      const cartItems = cartEbooks.filter((item): item is Ebook => Boolean(item)).map((item: Ebook) => ({
         id: item.id,
         title: item.title,
         description: item.description,
@@ -113,8 +113,8 @@ export default function CheckoutClient() {
         toast.error(error || "There was an error creating the payment session.");
         setIsProcessing(false);
       }
-    } catch (error: any) {
-      toast.error(error.message || "Unexpected error.");
+    } catch (error: unknown) {
+      toast.error(error instanceof Error ? error.message : "Unexpected error.");
       setIsProcessing(false);
     }
   };
@@ -215,17 +215,16 @@ export default function CheckoutClient() {
                 <CardTitle>Order summary</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                {cartEbooks.map(
-                  (item) =>
-                    item && (
-                      <div key={item.id} className="flex justify-between py-2">
-                        <div>
-                          <p className="font-medium">{item.title}</p>
-                          <p className="text-sm text-muted-foreground">Format: PDF</p>
-                        </div>
-                        <span>${item.price?.toFixed(2) || "0.00"}</span>
+                {cartEbooks.map((item: Ebook) =>
+                  item && (
+                    <div key={item.id} className="flex justify-between py-2">
+                      <div>
+                        <p className="font-medium">{item.title}</p>
+                        <p className="text-sm text-muted-foreground">Format: PDF</p>
                       </div>
-                    ),
+                      <span>{item.price?.toFixed(2) || "0.00"}</span>
+                    </div>
+                  ),
                 )}
 
                 <Separator />

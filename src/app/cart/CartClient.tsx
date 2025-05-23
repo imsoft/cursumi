@@ -32,24 +32,20 @@ const checkoutFormSchema = z.object({
 type CheckoutFormValues = z.infer<typeof checkoutFormSchema>
 
 export default function CartClient() {
-  const { items, removeItem, clearCart, getItemsCount } = useCartStore()
+  const { items, removeItem } = useCartStore()
   const [cartEbooks, setCartEbooks] = useState<Ebook[]>([])
-  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     async function fetchEbooks() {
-      setLoading(true)
       if (items.length === 0) {
         setCartEbooks([])
-        setLoading(false)
         return
       }
-      const { data, error } = await supabase
+      const { data } = await supabase
         .from("ebooks")
         .select("*")
         .in("id", items)
       setCartEbooks(data || [])
-      setLoading(false)
     }
     fetchEbooks()
   }, [items])
@@ -93,7 +89,7 @@ export default function CartClient() {
               Your Shopping Cart
             </h1>
             <p className="max-w-[700px] text-muted-foreground md:text-xl mx-auto animate-fade-in-delay">
-              Review and manage the ebooks you have added to your cart.
+              Review and manage the ebooks you&apos;ve added to your cart.
             </p>
           </div>
         </div>
@@ -102,7 +98,7 @@ export default function CartClient() {
           <div className="flex flex-col items-center justify-center py-12 text-center">
             <ShoppingCart className="h-16 w-16 text-muted-foreground mb-4" />
             <h2 className="text-2xl font-bold mb-2">Your cart is empty</h2>
-            <p className="text-muted-foreground mb-6">You haven't added any ebooks to your cart yet.</p>
+            <p className="text-muted-foreground mb-6">You haven&apos;t added any ebooks to your cart yet.</p>
             <Button asChild className="transition-all duration-300 hover:translate-y-[-2px] hover:shadow-lg">
               <Link href="/ebooks">Explore ebooks</Link>
             </Button>

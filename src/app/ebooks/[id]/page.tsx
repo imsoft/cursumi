@@ -1,9 +1,16 @@
 import { notFound } from "next/navigation"
 import { getEbookById } from "@/lib/getEbooks"
 import EbookDetailClient from "./EbookDetailClient"
+import { Metadata } from "next"
 
-export async function generateMetadata({ params }: { params: { id: string } }) {
-  const ebook = await getEbookById(params.id)
+type Props = {
+  params: Promise<{ id: string }>
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { id } = await params
+  const ebook = await getEbookById(id)
 
   if (!ebook) {
     return {
@@ -18,8 +25,9 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
   }
 }
 
-export default async function EbookPage({ params }: { params: { id: string } }) {
-  const ebook = await getEbookById(params.id)
+export default async function EbookPage({ params }: Props) {
+  const { id } = await params
+  const ebook = await getEbookById(id)
 
   if (!ebook) {
     notFound()

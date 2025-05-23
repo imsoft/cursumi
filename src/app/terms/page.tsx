@@ -32,7 +32,7 @@ export default function TermsPage() {
               <div className="space-y-4">
                 <h2 className="text-2xl font-bold">1. Introduction</h2>
                 <p>
-                  Welcome to Cursumi. These Terms and Conditions govern your access to and use of the Cursumi platform, including any content, functionality, and services offered on or through cursumi.com (the "Platform").
+                  Welcome to Cursumi. These Terms and Conditions govern your access to and use of the Cursumi platform, including any content, functionality, and services offered on or through cursumi.com (the &quot;Platform&quot;).
                 </p>
                 <p>
                   By accessing or using our Platform, you agree to be legally bound by these Terms and Conditions. If you do not agree with any of these terms, you must not access or use the Platform.
@@ -43,16 +43,16 @@ export default function TermsPage() {
                 <h2 className="text-2xl font-bold">2. Definitions</h2>
                 <ul className="list-disc pl-6 space-y-2">
                   <li>
-                    <strong>"Cursumi", "we", "us" or "our"</strong> refers to Cursumi S.L., the company that owns and operates the Platform.
+                    <strong>&quot;Cursumi&quot;, &quot;we&quot;, &quot;us&quot; or &quot;our&quot;</strong> refers to Cursumi S.L., the company that owns and operates the Platform.
                   </li>
                   <li>
-                    <strong>"User", "you" or "your"</strong> refers to any person who accesses or uses the Platform.
+                    <strong>&quot;User&quot;, &quot;you&quot; or &quot;your&quot;</strong> refers to any person who accesses or uses the Platform.
                   </li>
                   <li>
-                    <strong>"Content"</strong> refers to the ebooks, texts, graphics, images, videos, software, designs, and other materials that appear or are available on the Platform.
+                    <strong>&quot;Content&quot;</strong> refers to the ebooks, texts, graphics, images, videos, software, designs, and other materials that appear or are available on the Platform.
                   </li>
                   <li>
-                    <strong>"Services"</strong> refers to all services provided by Cursumi through the Platform, including the sale and distribution of ebooks.
+                    <strong>&quot;Services&quot;</strong> refers to all services provided by Cursumi through the Platform, including the sale and distribution of ebooks.
                   </li>
                 </ul>
               </div>
@@ -121,6 +121,9 @@ export default function TermsPage() {
                 <p>
                   The ebooks available on our Platform are protected by copyright and are property of their respective authors or rights holders. Purchasing an ebook does not transfer any intellectual property rights over the ebook.
                 </p>
+                <p>
+                  THE PLATFORM AND EBOOKS ARE PROVIDED &ldquo;AS IS&rdquo; AND &ldquo;AS AVAILABLE&rdquo; WITHOUT WARRANTIES OF ANY KIND, WHETHER EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+                </p>
               </div>
 
               <div className="space-y-4">
@@ -160,6 +163,13 @@ export default function TermsPage() {
                     legal@cursumi.com
                   </Link>
                   .
+                </p>
+              </div>
+
+              <div className="space-y-4">
+                <h2 className="text-2xl font-bold">12. Indemnity</h2>
+                <p>
+                  You agree to indemnify and hold harmless Cursumi, its affiliates, officers, directors, employees, and agents from and against any and all claims, liabilities, damages, losses, costs, and expenses (including reasonable attorneys&rsquo; fees) arising out of or in connection with your use of the Platform or Ebooks or your violation of these Terms and Conditions.
                 </p>
               </div>
             </div>

@@ -18,7 +18,7 @@ export default function ContactPage() {
                   Contact
                 </div>
                 <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl animate-fade-in">
-                  We're here to help you
+                  We&apos;re here to help you
                 </h1>
                 <p className="max-w-[700px] text-muted-foreground md:text-xl mx-auto animate-fade-in-delay">
                   Do you have any questions or comments? Fill out the form below and we will get in touch with you as soon as possible.

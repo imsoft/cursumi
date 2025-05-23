@@ -24,7 +24,7 @@ export default function EbooksClientPage() {
         setEbooks(data || [])
         setLoading(false)
       })
-      .catch((err) => {
+      .catch((/* err */) => {
         setError("Error loading ebooks")
         setLoading(false)
       })
