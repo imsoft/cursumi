@@ -23,7 +23,7 @@ export async function sendPurchaseEmail(email: string, ebooks: Ebook[], name?: s
       <table width="100%" cellPadding="0" cellSpacing="0" role="presentation" style="margin-bottom: 20px;">
         <tr>
           <td align="center">
-            <img src="https://cursumi.com/cursumi-logo.svg" alt="Cursumi Logo" style="height: 48px;" />
+            <img src="https://res.cloudinary.com/dm9r1xrdg/image/upload/v1748044277/LogoCursumi_ui3dg1.png" alt="Cursumi Logo" style="height: 48px;" />
           </td>
         </tr>
       </table>
@@ -60,7 +60,7 @@ export async function sendContactFormEmail(name: string, email: string, message:
       <table width="100%" cellPadding="0" cellSpacing="0" role="presentation" style="margin-bottom: 20px;">
         <tr>
           <td align="center">
-            <img src="https://cursumi.com/cursumi-logo.svg" alt="Cursumi Logo" style="height: 48px;" />
+            <img src="https://res.cloudinary.com/dm9r1xrdg/image/upload/v1748044277/LogoCursumi_ui3dg1.png" alt="Cursumi Logo" style="height: 48px;" />
           </td>
         </tr>
       </table>
