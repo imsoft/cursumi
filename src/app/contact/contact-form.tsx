@@ -1,7 +1,6 @@
 "use client"
 
-import { useState } from "react"
-import { useActionState } from "react"
+import { useState, useTransition } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -33,11 +32,9 @@ const formSchema = z.object({
   }),
 })
 
-const initialState: ContactFormState = {}
-
 export default function ContactForm() {
-  const [state, formAction] = useActionState(submitContactForm, initialState)
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isPending, startTransition] = useTransition()
+  const [state, setState] = useState<ContactFormState>({})
   const router = useRouter()
 
   // Define form with react-hook-form and zod
@@ -53,16 +50,16 @@ export default function ContactForm() {
 
   // Function to handle form submission
   const onSubmit = (data: ContactFormValues) => {
-    setIsSubmitting(true)
+    startTransition(async () => {
+      const formData = new FormData()
+      formData.append("name", data.name)
+      formData.append("email", data.email)
+      formData.append("message", data.message)
+      formData.append("acceptTerms", data.acceptTerms ? "on" : "off")
 
-    const formData = new FormData()
-    formData.append("name", data.name)
-    formData.append("email", data.email)
-    formData.append("message", data.message)
-    formData.append("acceptTerms", data.acceptTerms ? "on" : "off")
-
-    formAction(formData)
-    setTimeout(() => setIsSubmitting(false), 1500)
+      const result = await submitContactForm(formData)
+      setState(result)
+    })
   }
 
   return (
@@ -189,9 +186,9 @@ export default function ContactForm() {
                 <Button
                   type="submit"
                   className="w-full transition-all duration-300 hover:translate-y-[-2px] hover:shadow-lg"
-                  disabled={isSubmitting}
+                  disabled={isPending}
                 >
-                  {isSubmitting ? (
+                  {isPending ? (
                     <>
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                       Sending...

@@ -6,9 +6,15 @@ import { Button } from "@/components/ui/button"
 import { ShoppingCart } from "lucide-react"
 import { useCartStore } from "@/store/cart-store"
 import { ModeToggle } from "./mode-toggle"
+import { useEffect, useState } from "react"
 
 export default function Header() {
+  const [mounted, setMounted] = useState(false)
   const itemsCount = useCartStore((state) => state.getItemsCount())
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -49,7 +55,7 @@ export default function Header() {
             <Link href="/cart">
               <ShoppingCart className="h-5 w-5 transition-colors duration-300 hover:text-primary" />
               <span className="sr-only">Shopping cart</span>
-              {itemsCount > 0 && (
+              {mounted && itemsCount > 0 && (
                 <span className="absolute -top-1 -right-1 h-4 w-4 rounded-full bg-purple-600 text-[10px] font-medium text-white flex items-center justify-center">
                   {itemsCount}
                 </span>

@@ -1,8 +1,8 @@
 "use client"
 
 import type React from "react"
-
 import Link from "next/link"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { BookOpen, ShoppingCart } from "lucide-react"
 import { useCartStore } from "@/store/cart-store"
@@ -64,9 +64,20 @@ export default function EbooksClientPage() {
               className="flex flex-col rounded-lg border shadow-sm overflow-hidden transition-all duration-300 hover:shadow-lg hover:border-purple-300 hover:translate-y-[-5px] group"
             >
               <div className="relative aspect-[3/4] bg-purple-100 overflow-hidden">
-                <div className="absolute inset-0 flex items-center justify-center transition-transform duration-500 group-hover:scale-110">
-                  <BookOpen className="h-16 w-16 text-purple-600 transition-transform duration-300 group-hover:scale-110" />
-                </div>
+                {ebook.cover_url ? (
+                  <Image
+                    src={ebook.cover_url}
+                    alt={ebook.title}
+                    fill
+                    style={{ objectFit: "cover" }}
+                    className="transition-transform duration-500 group-hover:scale-110"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
+                ) : (
+                  <div className="absolute inset-0 flex items-center justify-center transition-transform duration-500 group-hover:scale-110">
+                    <BookOpen className="h-16 w-16 text-purple-600 transition-transform duration-300 group-hover:scale-110" />
+                  </div>
+                )}
               </div>
               <div className="p-6 flex flex-col flex-grow">
                 <h3 className="text-xl font-bold">{ebook.title}</h3>

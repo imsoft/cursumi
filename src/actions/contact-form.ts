@@ -13,7 +13,7 @@ const ContactFormSchema = z.object({
   }),
 })
 
-export async function submitContactForm(prevState: ContactFormState, formData: FormData): Promise<ContactFormState> {
+export async function submitContactForm(formData: FormData): Promise<ContactFormState> {
   // Extract form data
   const validationData = {
     name: formData.get("name"),
