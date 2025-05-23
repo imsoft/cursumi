@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Separator } from "@/components/ui/separator"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { ChevronLeft, CreditCard, Mail } from "lucide-react"
+import { ChevronLeft, Mail } from "lucide-react"
 import { useCartStore } from "@/store/cart-store"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { toast } from "sonner"
@@ -190,21 +190,6 @@ export default function CheckoutClient() {
                     <AlertDescription>{emailError}</AlertDescription>
                   </Alert>
                 )}
-              </CardContent>
-
-              <CardHeader className="border-t pt-6">
-                <CardTitle className="flex items-center gap-2">
-                  <CreditCard className="h-5 w-5 text-purple-600" />
-                  Payment information
-                </CardTitle>
-                <CardDescription>For this example, no real payment information is required.</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="rounded-lg border p-4 bg-slate-50 dark:bg-slate-900">
-                  <p className="text-center text-muted-foreground">
-                    In a full implementation, Stripe or another payment processor would be integrated here.
-                  </p>
-                </div>
               </CardContent>
             </Card>
           </div>

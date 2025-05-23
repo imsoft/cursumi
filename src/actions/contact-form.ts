@@ -2,6 +2,7 @@
 
 import { z } from "zod"
 import type { ContactFormState } from "@/interfaces"
+import { sendContactFormEmail } from "@/lib/sendPurchaseEmail"
 
 // Validation schema
 const ContactFormSchema = z.object({
@@ -34,11 +35,26 @@ export async function submitContactForm(formData: FormData): Promise<ContactForm
     }
   }
 
+  const { name, email, message } = validatedFields.data
+
   // Simulate a delay to show loading state
   await new Promise((resolve) => setTimeout(resolve, 1500))
 
   // Here would go the logic to send the email
   // For example, using Resend or some other service
+
+  try {
+    // Enviar el email del formulario de contacto
+    await sendContactFormEmail(name, email, message)
+    console.log("Correo de formulario de contacto enviado exitosamente")
+  } catch (emailError) {
+    console.error("Error al enviar correo del formulario de contacto:", emailError)
+    // Decide how to handle this error - maybe return a specific error message to the user
+    return {
+      success: false,
+      message: "Error al enviar el mensaje. Por favor, inténtalo de nuevo más tarde.",
+    }
+  }
 
   // Return success
   return {
