@@ -18,7 +18,6 @@ const supabase = createClient(
 
 export default function PurchaseConfirmation() {
   const router = useRouter()
-  const searchParams = useSearchParams()
   const { clearCart } = useCartStore()
   const [email, setEmail] = useState("")
   const [cartEbooks, setCartEbooks] = useState<Ebook[]>([])
@@ -48,7 +47,7 @@ export default function PurchaseConfirmation() {
         console.log("Fetching purchases for email:", savedEmail)
         
         // Verificar la conexión con Supabase
-        const { data: testConnection, error: connectionError } = await supabase
+        const { error: connectionError } = await supabase
           .from("purchases")
           .select("count")
           .limit(1)
