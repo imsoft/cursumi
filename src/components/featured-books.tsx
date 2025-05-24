@@ -53,7 +53,7 @@ export default function FeaturedBooks() {
                 src={book.cover_url}
                 alt={book.title}
                 fill
-                style={{ objectFit: "cover" }}
+                style={{ objectFit: "contain" }}
                 className="transition-transform duration-500 group-hover:scale-110"
                 sizes="(max-width: 768px) 100vw, 33vw"
               />

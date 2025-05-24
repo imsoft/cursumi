@@ -39,7 +39,7 @@ export default function EbookDetailClient({ ebook }: EbookDetailClientProps) {
                   src={ebook.cover_url}
                   alt={ebook.title}
                   fill
-                  style={{ objectFit: "cover" }}
+                  style={{ objectFit: "contain" }}
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
               ) : (
