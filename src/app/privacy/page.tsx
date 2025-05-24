@@ -95,10 +95,10 @@ export default function PrivacyPage() {
                 <p>
                   To exercise these rights, contact us at{" "}
                   <Link
-                    href="mailto:privacidad@cursumi.com"
+                    href="mailto:cursumi.com@gmail.com"
                     className="text-purple-600 hover:text-purple-700 dark:text-purple-400 dark:hover:text-purple-300 underline underline-offset-2"
                   >
-                    privacidad@cursumi.com
+                    cursumi.com@gmail.com
                   </Link>
                   .
                 </p>
@@ -116,10 +116,10 @@ export default function PrivacyPage() {
                 <p>
                   If you have questions or concerns about this Privacy Notice or our data practices, please contact our Data Protection Officer at{" "}
                   <Link
-                    href="mailto:privacidad@cursumi.com"
+                    href="mailto:cursumi.com@gmail.com"
                     className="text-purple-600 hover:text-purple-700 dark:text-purple-400 dark:hover:text-purple-300 underline underline-offset-2"
                   >
-                    privacidad@cursumi.com
+                    cursumi.com@gmail.com
                   </Link>
                   .
                 </p>

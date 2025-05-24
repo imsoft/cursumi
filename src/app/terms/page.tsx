@@ -104,10 +104,10 @@ export default function TermsPage() {
                 <p>
                   Refund requests must be submitted within 7 days of purchase to{" "}
                   <Link
-                    href="mailto:soporte@cursumi.com"
+                    href="mailto:cursumi.com@gmail.com"
                     className="text-purple-600 hover:text-purple-700 dark:text-purple-400 dark:hover:text-purple-300 underline underline-offset-2"
                   >
-                    soporte@cursumi.com
+                    cursumi.com@gmail.com
                   </Link>
                   .
                 </p>
@@ -157,10 +157,10 @@ export default function TermsPage() {
                 <p>
                   If you have questions about these Terms and Conditions, please contact us at{" "}
                   <Link
-                    href="mailto:legal@cursumi.com"
+                    href="mailto:cursumi.com@gmail.com"
                     className="text-purple-600 hover:text-purple-700 dark:text-purple-400 dark:hover:text-purple-300 underline underline-offset-2"
                   >
-                    legal@cursumi.com
+                    cursumi.com@gmail.com
                   </Link>
                   .
                 </p>

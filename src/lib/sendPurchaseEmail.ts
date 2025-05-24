@@ -21,7 +21,7 @@ function generateEmailLayout(content: string): string {
     <hr style="border: none; border-top: 1px solid #e2e8f0; margin: 32px 0;" />
     <p style="text-align: center; font-size: 14px; color: #64748b; margin: 0;">
       If you have any questions, contact us at
-      <a href="mailto:support@cursumi.com" style="color: #7c3aed; text-decoration: none;">support@cursumi.com</a>.
+      <a href="mailto:cursumi.com@gmail.com" style="color: #7c3aed; text-decoration: none;">cursumi.com@gmail.com</a>.
     </p>
     <p style="text-align: center; font-size: 12px; color: #94a3b8; margin-top: 12px;">
       Cursumi — Empowering readers through digital knowledge.
@@ -95,7 +95,7 @@ export async function sendContactFormEmail(
 `;
 
   return resend.emails.send({
-    from: "Cursumi Contact <contact@cursumi.com>",
+    from: "Cursumi Contact <cursumi.com@gmail.com>",
     to: toEmail,
     subject,
     html: generateEmailLayout(bodyContent),
