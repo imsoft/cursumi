@@ -8,6 +8,7 @@ import { BookOpen, Calendar, ChevronLeft, FileText, Globe, ShoppingCart, User } 
 import type { EbookDetailClientProps } from "@/interfaces"
 import { useCartStore } from "@/store/cart-store"
 import { useRouter } from "next/navigation"
+import Image from "next/image"
 
 export default function EbookDetailClient({ ebook }: EbookDetailClientProps) {
   const addItem = useCartStore((state) => state.addItem)
@@ -33,9 +34,19 @@ export default function EbookDetailClient({ ebook }: EbookDetailClientProps) {
         <div className="grid gap-8 md:grid-cols-2 lg:gap-12">
           <div className="flex flex-col space-y-6">
             <div className="relative aspect-[3/4] bg-purple-100 rounded-lg overflow-hidden shadow-lg transition-all duration-300 hover:shadow-xl">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <BookOpen className="h-32 w-32 text-purple-600" />
-              </div>
+              {ebook.cover_url ? (
+                <Image
+                  src={ebook.cover_url}
+                  alt={ebook.title}
+                  fill
+                  style={{ objectFit: "cover" }}
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              ) : (
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <BookOpen className="h-32 w-32 text-purple-600" />
+                </div>
+              )}
             </div>
 
             <div className="space-y-4 rounded-lg border p-6 shadow-sm">
