@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 import { createClient } from "@supabase/supabase-js";
-import { sendPurchaseEmail } from "@/lib/sendPurchaseEmail";
 
 // Puedes definir interfaces más específicas si solo necesitas ciertos campos
 interface EbookForCheckout {
@@ -9,16 +8,6 @@ interface EbookForCheckout {
   title: string;
   description?: string | null;
   price: number;
-  cover_url?: string | null;
-}
-
-// interface PurchaseItem { // Eliminamos PurchaseItem ya que no se usa
-//   ebook_id: string;
-// }
-
-interface EbookItemForEmail {
-  id: string;
-  title: string;
   cover_url?: string | null;
 }
 
