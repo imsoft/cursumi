@@ -78,65 +78,27 @@ export async function POST(req: NextRequest) {
 
     console.log("API: Sesión de Stripe creada exitosamente. URL:", session.url);
 
-    // --- Inicio de la lógica de registro en Supabase y envío de correo --- //
-    // Nota: Idealmente, el registro de la compra y el envío del email deberían manejarse con Stripe webhooks
-    // para garantizar que solo se ejecuten después de un pago exitoso. Sin embargo, para depuración y
-    // un flujo más simple inicial, lo incluiremos aquí de forma básica.
-
-    // Registrar la compra en Supabase (Estado inicial: pendiente o completado si usas 'payment_intent.succeeded' webhook)
-    // Para este ejemplo simple, lo registramos como completado aquí. En un entorno real, usa webhooks.
+    // Registrar la compra en Supabase con estado pendiente
     const purchaseData = cartItems.map((item: EbookForCheckout) => ({
         ebook_id: item.id,
         customer_email: customer_email,
         amount: item.price,
-        status: "completed", // Cambiar a 'pending' y actualizar con webhook de Stripe
+        status: "pending", // Cambiado a pending
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString()
     }));
     
     console.log("API: Intentando registrar compra en Supabase:", purchaseData);
 
-    const { error: insertError, data: insertedPurchases } = await supabase
+    const { error: insertError } = await supabase
       .from("purchases")
       .insert(purchaseData);
 
     if (insertError) {
       console.error("API: Error al registrar la compra en Supabase:", insertError);
-      // Considerar qué hacer si falla el registro en Supabase después de crear la sesión de Stripe
-      // Por ahora, continuamos para no bloquear el checkout, pero esto podría necesitar manejo manual.
     } else {
-        console.log("API: Compra(s) registrada(s) exitosamente en Supabase:", insertedPurchases);
-
-        // --- Envío del correo --- //
-        console.log("API: Buscando ebooks comprados para enviar email...");
-        const ebookIds = purchaseData.map((p: { ebook_id: string }) => p.ebook_id);
-        const { data: ebooks, error: ebooksError } = await supabase
-            .from("ebooks")
-            .select("title, cover_url, id") // Asegúrate de seleccionar 'id' para la URL
-            .in("id", ebookIds);
-
-        if (ebooksError) {
-            console.error("API: Error al obtener datos de ebooks para el email:", ebooksError);
-        } else if (ebooks && ebooks.length > 0) {
-            console.log("API: Ebooks encontrados para el email:", ebooks);
-            const ebooksWithLinks = (ebooks as EbookItemForEmail[]).map((ebook) => ({
-                title: ebook.title,
-                download_url: `${process.env.NEXT_PUBLIC_APP_URL}/download/${ebook.id}`,
-            }));
-
-            console.log("API: Enviando email de compra a:", customer_email, "con enlaces:", ebooksWithLinks);
-            try {
-                const emailResult = await sendPurchaseEmail(customer_email, ebooksWithLinks);
-                console.log("API: Resultado del envío de email:", emailResult);
-            } catch (emailError) {
-                console.error("API: Error al enviar el email de compra:", emailError);
-                // El envío de email falló, pero la compra ya fue registrada. Decide si quieres notificar al usuario.
-            }
-        } else {
-            console.log("API: No se encontraron datos de ebooks para enviar el email.");
-        }
+      console.log("API: Compra(s) registrada(s) exitosamente en Supabase con estado pendiente");
     }
-    // --- Fin de la lógica de registro en Supabase y envío de correo --- //
 
     return NextResponse.json({ url: session.url });
 

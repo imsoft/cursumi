@@ -57,14 +57,12 @@ export default function PurchaseConfirmation() {
           throw new Error("Error de conexión con la base de datos")
         }
 
-        // Obtener los ebooks comprados recientemente por este email
+        // Obtener las compras completadas para este email
         const { data: purchases, error: purchasesError } = await supabase
           .from("purchases")
-          .select("ebook_id, created_at")
+          .select("*")
           .eq("customer_email", savedEmail)
           .eq("status", "completed")
-          .order("created_at", { ascending: false })
-          .limit(10)
 
         if (purchasesError) {
           console.error("Error fetching purchases:", purchasesError)
@@ -90,7 +88,7 @@ export default function PurchaseConfirmation() {
           console.log("Ebooks found:", ebooks)
           setCartEbooks(ebooks || [])
         } else {
-          console.log("No purchases found for this email")
+          console.log("No completed purchases found for this email")
           setCartEbooks([])
         }
       } catch (error) {
