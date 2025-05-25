@@ -22,7 +22,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/"
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300"
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300 cursor-pointer"
                 >
                   Home
                 </Link>
@@ -30,7 +30,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/ebooks"
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300"
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300 cursor-pointer"
                 >
                   Ebooks
                 </Link>
