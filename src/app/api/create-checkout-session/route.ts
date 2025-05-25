@@ -42,18 +42,24 @@ export async function POST(req: NextRequest) {
     console.log("API: Datos recibidos - Email:", customer_email, "Items en carrito:", cartItems.length);
 
     // Crear una sesión de pago con Stripe
-    const line_items = cartItems.map((item: EbookForCheckout) => ({
-      price_data: {
-        currency: "usd",
-        product_data: {
-          name: item.title,
-          description: item.description,
-          images: item.cover_url ? [item.cover_url] : [],
+    const line_items = cartItems.map((item: EbookForCheckout) => {
+      const price = item.price;
+      const tax = price * 0.16; // 16% IVA
+      const totalWithTax = price + tax;
+      
+      return {
+        price_data: {
+          currency: "usd",
+          product_data: {
+            name: item.title,
+            description: item.description,
+            images: item.cover_url ? [item.cover_url] : [],
+          },
+          unit_amount: Math.round(totalWithTax * 100), // Precio en centavos incluyendo impuestos
         },
-        unit_amount: Math.round(item.price * 100), // Precio en centavos
-      },
-      quantity: 1,
-    }));
+        quantity: 1,
+      };
+    });
 
     console.log("API: Creando sesión de Stripe con line_items:", line_items);
 
