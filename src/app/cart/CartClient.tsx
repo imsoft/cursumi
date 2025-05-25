@@ -199,7 +199,7 @@ export default function CartClient() {
                                 <FormLabel className="text-sm font-medium">Email</FormLabel>
                                 <FormControl>
                                   <Input
-                                    placeholder="tu@email.com"
+                                    placeholder="your@email.com"
                                     type="email"
                                     {...field}
                                     className="transition-all duration-300 focus:border-purple-500 focus:ring-purple-500"

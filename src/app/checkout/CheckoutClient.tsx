@@ -160,7 +160,7 @@ export default function CheckoutClient() {
                   <Input
                     id="email"
                     type="email"
-                    placeholder="tu@email.com"
+                    placeholder="your@email.com"
                     value={email}
                     onChange={(e) => {
                       setEmail(e.target.value)
@@ -175,7 +175,7 @@ export default function CheckoutClient() {
                   <Input
                     id="confirmEmail"
                     type="email"
-                    placeholder="tu@email.com"
+                    placeholder="your@email.com"
                     value={confirmEmail}
                     onChange={(e) => {
                       setConfirmEmail(e.target.value)
