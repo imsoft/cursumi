@@ -67,7 +67,7 @@ export default function FeaturedBooks() {
             <h3 className="text-xl font-bold">{book.title}</h3>
             <p className="mt-2 text-sm text-muted-foreground flex-grow">{book.description}</p>
             <div className="mt-4 flex items-center justify-between">
-              <span className="text-lg font-bold">${book.price?.toFixed(2)}</span>
+              <span className="text-lg font-bold">${book.price?.toFixed(2)} <span className="text-sm text-muted-foreground">USD</span></span>
               <div className="flex gap-2">
                 <Button
                   size="sm"
@@ -75,7 +75,7 @@ export default function FeaturedBooks() {
                   onClick={(e) => handleAddToCart(e, book.id)}
                 >
                   <ShoppingCart className="mr-2 h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
-                  Añadir
+                  Add to cart
                 </Button>
               </div>
             </div>

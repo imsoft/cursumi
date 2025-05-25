@@ -94,6 +94,7 @@ export default function EbookDetailClient({ ebook }: EbookDetailClientProps) {
               <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">{ebook.title}</h1>
               <div className="mt-4 flex items-center">
                 <span className="text-3xl font-bold text-purple-600">${ebook.price.toFixed(2)}</span>
+                <span className="text-sm text-muted-foreground ml-1">USD</span>
               </div>
             </div>
 

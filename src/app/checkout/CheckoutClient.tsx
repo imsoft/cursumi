@@ -207,7 +207,7 @@ export default function CheckoutClient() {
                         <p className="font-medium">{item.title}</p>
                         <p className="text-sm text-muted-foreground">Format: PDF</p>
                       </div>
-                      <span>{item.price?.toFixed(2) || "0.00"}</span>
+                      <span>${item.price?.toFixed(2) || "0.00"} <span className="text-sm text-muted-foreground">USD</span></span>
                     </div>
                   ),
                 )}
@@ -217,16 +217,16 @@ export default function CheckoutClient() {
                 <div className="space-y-2">
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Subtotal</span>
-                    <span>${subtotal.toFixed(2)}</span>
+                    <span>${subtotal.toFixed(2)} <span className="text-sm text-muted-foreground">USD</span></span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">IVA (16%)</span>
-                    <span>${tax.toFixed(2)}</span>
+                    <span>${tax.toFixed(2)} <span className="text-sm text-muted-foreground">USD</span></span>
                   </div>
                   <Separator />
                   <div className="flex justify-between font-bold">
                     <span>Total</span>
-                    <span>${total.toFixed(2)}</span>
+                    <span>${total.toFixed(2)} <span className="text-sm text-muted-foreground">USD</span></span>
                   </div>
                 </div>
               </CardContent>

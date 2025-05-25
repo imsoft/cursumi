@@ -94,7 +94,7 @@ export default function EbooksClientPage() {
                   </span>
                 </div>
                 <div className="mt-4 flex items-center justify-between">
-                  <span className="text-lg font-bold">${ebook.price?.toFixed(2)}</span>
+                  <span className="text-lg font-bold">${ebook.price?.toFixed(2)} <span className="text-sm text-muted-foreground">USD</span></span>
                   <div>
                     <Button
                       size="sm"
