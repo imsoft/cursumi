@@ -67,7 +67,7 @@ export async function POST(req: NextRequest) {
       metadata: {
         ebook_ids: JSON.stringify(cartItems.map((item: EbookForCheckout) => item.id)),
         customer_email: customer_email,
-      },
+      }
     });
 
     console.log("API: Sesión de Stripe creada exitosamente. URL:", session.url);
