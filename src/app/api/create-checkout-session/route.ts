@@ -59,6 +59,7 @@ export async function POST(req: NextRequest) {
       success_url: `${process.env.NEXT_PUBLIC_APP_URL}/thank-you?success=true&session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/cart?canceled=true`,
       customer_email,
+      locale: "auto",
       metadata: {
         ebook_ids: JSON.stringify(cartItems.map((item: EbookForCheckout) => item.id)),
         customer_email: customer_email,
