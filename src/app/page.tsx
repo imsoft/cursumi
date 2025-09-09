@@ -17,10 +17,10 @@ const Home = () => {
           </h1>
           <div className="text-center space-y-2">
             <p className="text-xl md:text-2xl text-white/90 font-medium">
-              🚧 We're building something incredible
+              🚧 We&apos;re building something incredible
             </p>
             <p className="text-lg text-white/70">
-              Soon you'll have access to a unique learning experience
+              Soon you&apos;ll have access to a unique learning experience
             </p>
             <div className="mt-6 flex items-center justify-center space-x-2">
               <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
